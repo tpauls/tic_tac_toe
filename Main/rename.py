@@ -5,10 +5,22 @@ class Player :
     def display (self):
         s ="It Your Turn " + str(self.name)
         return s
-# class Game(Player):
-#     def __init__(self, name, token, board):
-#         super().__init__(length, width)
-#         self.board = board
+class Game(Player):
+    def __init__(self, name, token,gameboard):
+        super().__init__(name, token)
+        self.gameboard = gameboard
+    def board(self):
+        print("\n")
+        print("\t     |     |")
+        print("\t  {}  |  {}  |  {}".format(gameboard[0], gameboard[1], gameboard[2]))
+        print('\t_____|_____|_____')
+        print("\t     |     |")
+        print("\t  {}  |  {}  |  {}".format(gameboard[3], gameboard[4], gameboard[5]))
+        print('\t_____|_____|_____')
+        print("\t     |     |") 
+        print("\t  {}  |  {}  |  {}".format(gameboard[6], gameboard[7], gameboard[8]))
+        print("\t     |     |")
+        print("\n")
 
 
 def get_selection():
@@ -57,18 +69,7 @@ def move(x, y): # does "player" need to be one of the variables as shown in the 
         position = 8
     return position
 
-def board():
-    print("\n")
-    print("\t     |     |")
-    print("\t  {}  |  {}  |  {}".format(gameboard[0], gameboard[1], gameboard[2]))
-    print('\t_____|_____|_____')
-    print("\t     |     |")
-    print("\t  {}  |  {}  |  {}".format(gameboard[3], gameboard[4], gameboard[5]))
-    print('\t_____|_____|_____')
-    print("\t     |     |") 
-    print("\t  {}  |  {}  |  {}".format(gameboard[6], gameboard[7], gameboard[8]))
-    print("\t     |     |")
-    print("\n")
+
 
 def winning (gameboard):
     if gameboard[0]==  'X' and gameboard[1] == 'X' and gameboard[2] == 'X':
@@ -160,6 +161,7 @@ while turn != 10:
             box_selection = get_selection()
             position = move(box_selection[0], box_selection[1])
         gameboard[position] = player1.token
+        player1ingame= Game(player1n, player1t,gameboard)
         board()
         wincheck =  winning(gameboard)
         if wincheck == True:
@@ -177,6 +179,7 @@ while turn != 10:
             box_selection = get_selection()
             position = move(box_selection[0], box_selection[1])
         gameboard[position] = player2.token
+        player2ingame= Game(player2n, player2t,gameboard)
         board()
         wincheck =  winning(gameboard)
         if wincheck == True:
